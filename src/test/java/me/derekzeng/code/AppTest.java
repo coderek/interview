@@ -33,6 +33,10 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+        Fruit apple = Fruit.Apple;
+        Fruit orange = Fruit.Orange;
+        System.out.println(apple);
+        System.out.println(orange);
+        assertTrue( apple.getName() == "Apple" );
     }
 }
