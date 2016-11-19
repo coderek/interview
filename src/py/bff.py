@@ -1,3 +1,5 @@
+# https://code.google.com/codejam/contest/4304486/dashboard#s=p2
+
 class Component(object):
 
     def __init__(self, cycle, tail):
