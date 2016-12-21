@@ -84,3 +84,5 @@ for i in xrange(n):
     raw_input()
     bffs = map(lambda a: int(a) - 1, raw_input().split(' '))
     print 'Case #{}: {}'.format(i+1, solve(bffs))
+
+
