@@ -18,7 +18,7 @@ class WordBreak2 {
             for (int s = 1; s < table.length-1; s++) {
                 if (s>=e) continue;
                 String word = str.substring(s, e);
-                if (table[0][s] && wordDict.contians(word)) {
+                if (table[0][s] && wordDict.contains(word)) {
                     table[s][e] = true;
                 }
             }
