@@ -7,36 +7,9 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        Fruit apple = Fruit.Apple;
-        Fruit orange = Fruit.Orange;
-        System.out.println(apple);
-        System.out.println(orange);
-        assertTrue( apple.getName() == "Apple" );
+public class AppTest extends TestCase {
+    public void testApp() {
+        Atoi a = new Atoi();
+        assertTrue(a.myAtoi("123123") == 123123);
     }
 }
