@@ -366,7 +366,68 @@ public class Medium {
         }
         return true;
     }
+
+    public int findMaxForm(String[] strs, int m, int n) {
+        int[][] dp = new int[m+1][n+1];
+        for (String s: strs) {
+            int[] count = new int[2];
+            for (char c:s.toCharArray()) {count[0]+='1'-c;count[1]+=c-'0';}
+            for (int i=m;i>=count[0];i--) {
+                for (int j=n;j>=count[1];j--) {
+                    dp[i][j] = Math.max(
+                        dp[i][j],
+                        dp[i-count[0]][j-count[1]] + 1
+                    );
+                }
+            }
+        }
+        return dp[m][n];
+    }
+
+    public static int[] addParen(String s) {
+        List<Integer> nums = new ArrayList<>();
+        List<Character> ops = new ArrayList<>();
+        int n=0;
+        for (int i=0;i<s.length();i++) {
+            char ch = s.charAt(i);
+            if ("+-*".indexOf(ch)!=-1) {
+                ops.add(ch);
+                nums.add(n);
+                n=0;
+            } else {
+                n = n * 10 + Integer.parseInt(""+ch);
+            }
+        }
+
+        nums.add(n);
+        ops.add(0, '+');
+        return opRecurse(nums, ops, 0, nums.size());
+    }
+
+    private static int[] opRecurse(List<Integer> nums, List<Character> ops, int s, int e) {
+        if (e-s==1) return new int[]{nums.get(s)};
+        List<Integer> ret = new ArrayList<>();
+        for (int i=s+1;i<e;i++) {
+            int[] res1 = opRecurse(nums, ops, s, i);
+            int[] res2 = opRecurse(nums, ops, i, e);
+            char op = ops.get(i);
+            for (int n1:res1) {
+                for (int n2:res2) {
+                    ret.add(
+                            op=='+'?n1+n2:
+                            op=='-'?n1-n2: n1*n2);
+                }
+            }
+        }
+        int[] retArr = new int[ret.size()];
+        for (int i=0;i<ret.size();i++) {
+            retArr[i]=ret.get(i);
+        }
+        return retArr;
+    }
+
+
     public static void main(String[] args) {
-        System.out.println(splitArray(new int[]{4,4,1}, 3));
+        System.out.println(Arrays.toString(addParen("1+2*3+1*2")));
     }
 }
